@@ -1,6 +1,6 @@
-##Simple Library for Mathematics for 2D Graphics
+###Simple Library for Mathematics for 2D Graphics
 
-#So far I have implemented:
+####So far I have implemented:
 
 1. Vector2D
 ..* Simple Class for handling Vectors and Points (maybe needs third component and new class for Points)
@@ -14,12 +14,12 @@
 ..* Basic Distance between Polygons and Linear Shapes etc..
 
 
-#So far I have tested and are working properly:
+####So far I have tested and are working properly:
 
 1. Vector2D
 2. Matrix2D
 
 
-# WORK IN PROGRESS - WILL BE UPDATED FREQUENTLY
+####WORK IN PROGRESS - WILL BE UPDATED FREQUENTLY
 
 I am currently working on this little library and will be pushing more updated stuff. Any suggestions of course are more than welcomed.
