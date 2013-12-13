@@ -12,12 +12,11 @@ class Matrix2D;
 
 /**
 * Simple 2D Vector Class
-*
 **/
 class Vector2D
 {
 private:
-	// Vector Data, x and y
+	// Vector Data
 	double x;
 	double y;
 public:
@@ -44,19 +43,44 @@ public:
 		this->y = other.y;
 	}
 
-	// Getters
+	/**
+	* Get X component
+	* @return double - the X value
+	**/
 	double X() {return x;}
+
+	/**
+	* Get Y component
+	* @return double - the Y value
+	**/
 	double Y() {return y;}
 
-	// Setters
+	/**
+	* Set X component
+	* @param a - value to set
+	**/
 	void setX(double a) {x=a;}
+
+	/**
+	* Set Y component
+	* @param b - value to set
+	**/
 	void setY(double b) {y=b;}
 
-	// Make Vector Zero and test if Zero
+	/**
+	* Make vector zero (x=y=0)
+	**/
 	void Zero() {x=0.0;y=0.0;}
+
+	/**
+	* Test if vector is zero?
+	* @return bool - true if vector is zero
+	**/
 	bool isZero()const {return (x*x+y*y)<MinDouble;}
 
-	// Normalization method
+	/**
+	* Normalize vector
+	**/
 	void Normalize()
 	{
 		double length = Length();
@@ -68,28 +92,63 @@ public:
 		}
 	}
 
-	// Get Perpedicular or Reverse Vectors
+	/**
+	* Get Perpendicular Vector (-y,x)
+	* @return Vector2D - the perpendicular vector (-y,x)
+	**/
 	Vector2D Perp() {return Vector2D(-y,x);}
+
+	/**
+	* Get Perpendicular Vector (y,-x)
+	* @return Vector2D - the perpendicular vector (y,-x)
+	**/
 	Vector2D Perp2() {return Vector2D(y,-x);}
+
+	/**
+	* Get Reverse Vector (-x,-y)
+	* @return Vector2D - the reversed vector
+	**/
 	Vector2D Reverse(){return Vector2D(-x,-y);}
 
-	// Length and LengthSquared (avoids sqrt which is costly - used when precision doesn't matter) methods
+	/**
+	* Get Length of Vector
+	* @return double - length of the vector
+	**/
 	double Length()const {return sqrt(x*x+y*y);}
+
+	/**
+	* Get Length Squared of Vector (avoids sqrt function - for quick tests or fast code)
+	* @return double - length squared of the vector
+	**/
 	double LengthSq()const {return (x*x+y*y);}
 
-	// Dot Product
+	/**
+	* Dot product with other vector
+	* @param other - vector to compute dot with
+	* @return double - the dot product
+	**/
 	double Dot(const Vector2D& other)const
 	{
 		return (x*other.x+y*other.y);
 	}
 
-	// Distance and DistanceSquared between Vectors
+	/**
+	* Distance to other vector
+	* @param other - vector to compute distance to
+	* @return double - distance to other vector
+	**/
 	double Distance(const Vector2D& other)const
 	{
 		double xSep = other.x-x;
 		double ySep = other.y-y;
 		return sqrt(xSep*xSep+ySep*ySep);
 	}
+
+	/**
+	* Distance Squared to other vector (avoids sqrt function - for quick tests or fast code)
+	* @param other - vector to compute distance to
+	* @return double - distance squared to other vector
+	**/
 	double DistanceSq(const Vector2D& other)const
 	{
 		double xSep = other.x-x;
@@ -97,7 +156,11 @@ public:
 		return xSep*xSep+ySep*ySep;
 	}
 
-	// Angle between Vectors
+	/**
+	* Angle with other vector
+	* @param other - vector to compute angle with
+	* @return double - the angle with the vector
+	**/
 	double Angle(const Vector2D& other)const
 	{
 		double dot = Dot(other);
@@ -107,8 +170,8 @@ public:
 
 	/**
 	* Overload basic operators
-	* mathematic operators
-	* equality operators
+	* mathematic operators (*,/,+,-)
+	* equality operators (==,!=)
 	**/
 	const Vector2D& operator-=(const Vector2D& other)
 	{

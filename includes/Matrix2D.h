@@ -4,23 +4,39 @@
 /**
 * Includes
 **/
+#include <cstring>
 #include "Vector2D.h"
 
 /**
-* Simple 2D Matrix Class
-*
+* Simple 2D Matrix Class (3x3 Matrix)
 **/
 class Matrix2D
 {
-public:
+protected:
+	//Matrix Data
 	double data[3][3];
+public:
+	/**
+	* Default Constructor
+	* Initializes matrix to Identity
+	**/
 	Matrix2D(){ Identity();}
+
+	/**
+	* Copy Constructor
+	* @param other - Matrix2D to copy from
+	**/
 	Matrix2D(const Matrix2D& other)
 	{
 		for(int i=0;i<3;i++)
 			for(int j=0;j<3;j++)
 				data[i][j] = other.data[i][j];
 	}
+
+	/**
+	* Constructor
+	* @param table - 2-dimensional table to copy data from
+	**/
 	Matrix2D(double** table)
 	{
 		for(int i=0;i<3;i++)
@@ -28,6 +44,9 @@ public:
 				data[i][j] = table[i][j];
 	}
 
+	/**
+	* Make matrix Identity
+	**/
 	void Identity()
 	{
 		for(int i=0;i<3;i++)
@@ -42,6 +61,27 @@ public:
 		}
 	}
 
+	/**
+	* Get Matrix Data
+	* @return double** - the data
+	**/
+	double** getData()
+	{
+		double** data;
+		data = new double*[3];
+		for(int i=0;i<3;i++)
+		{
+			data[i] = new double[3];
+			memcpy(data[i],this->data[i],3*sizeof(double));
+		}
+		return data;
+	}
+
+	/**
+	* Translate this Matrix
+	* @param dx - translation offset in x-axis
+	* @param dy - translation offset in y-axis
+	**/
 	void Translate(double dx, double dy)
 	{
 		Matrix2D temp = Matrix2D();
@@ -50,6 +90,11 @@ public:
 		(*this)*=temp;
 	}
 
+	/**
+	* Scale this Matrix
+	* @param dx - scale offset in x-axis
+	* @param dy - scale offset in y-axis
+	**/
 	void Scale(double dx, double dy)
 	{
 		Matrix2D temp = Matrix2D();
@@ -58,6 +103,10 @@ public:
 		(*this)*=temp;
 	}
 
+	/**
+	* Rotate this Matrix (xy-Cartesian plane counter-clockwise through an angle "angle" about the origin)
+	* @param angle - angle in radians
+	**/
 	void Rotate(double angle)
 	{
 		double c = cos(angle);
@@ -70,12 +119,21 @@ public:
 		(*this)*=temp;
 	}
 
+	/**
+	* Rotate this Matrix (xy-Cartesian plane counter-clockwise through an angle "angle" about the origin)
+	* @param angle - angle in degrees
+	**/
 	void RotateDegrees(double angle)
 	{
 		double a = DegreesToRadians(angle);
 		Rotate(a);
 	}
 
+	/**
+	* Rotate this Matrix to align with object that has fwd Forward vector and side Side vector
+	* @param fwd - the Forward Vector
+	* @param side - the Side Vector
+	**/
 	void Rotate(Vector2D fwd, Vector2D side)
 	{
 		Matrix2D temp = Matrix2D();
@@ -86,6 +144,10 @@ public:
 		(*this)*=temp;
 	}
 
+	/**
+	* Get Transpose of the Matrix
+	* @return Matrix2D - the transposed matrix
+	**/
 	Matrix2D Transpose()
 	{
 		Matrix2D temp = Matrix2D();
@@ -97,11 +159,19 @@ public:
 		return temp;
 	}
 
+	/**
+	* Get the Determinant of the Matrix
+	* @return double - the value of the Determinant
+	**/
 	double Det()const
 	{
 		return (data[0][0]*data[1][1]*data[2][2]-data[0][0]*data[1][2]*data[2][1]-data[0][1]*data[1][0]*data[2][2]+data[0][1]*data[1][2]*data[0][2]+data[0][2]*data[1][0]*data[2][1]-data[0][2]*data[1][1]*data[2][0]);
 	}
 
+	/**
+	* Get Inverse of the Matrix
+	* @return Matrix2D - the inversed matrix
+	**/
 	Matrix2D Inverse()
 	{
 		double det = Det();
@@ -122,6 +192,10 @@ public:
 		return temp;
 	}
 
+	/**
+	* Overload basic operators
+	* mathematic operators (*,/)
+	**/
 	const Matrix2D& operator*=(const double& other)
 	{
 		for(int i=0;i<3;i++)
@@ -159,8 +233,17 @@ public:
 		(*this) = temp;
 		return *this;
 	}
+
+	friend Vector2D operator*(Vector2D& vec, const Matrix2D& mat);
+	friend const Vector2D& Vector2D::operator *=(const Matrix2D& other);
 };
 
+/**
+* Functions Overloading basic operators
+* mathematic operators
+* equality operators
+* dot products
+**/
 Matrix2D operator*(const Matrix2D& mat1, double val)
 {
 	Matrix2D temp = Matrix2D(mat1);
