@@ -11,8 +11,24 @@
 4. LinearShapes
   * Simple Classes for Basic Linear Shapes (Line, Ray, Segment)
 5. Distances2D
-  * Basic Distance between Polygons and Linear Shapes etc..
+  * Distances between Polygons and Linear Shapes etc..
 
+####Planning to implement:
+
+1. Intersections2D
+  * Find intersections (intersection area, points, true/false) between all the 2D primitives/shapes above
+2. Quadratic Curves
+  * Circles
+  * Ellipses
+3. Polynomial Curves
+  * Bezier
+  * B-Spline
+  * NURBS
+4. BSP Trees in 2D
+5. Miscellaneous Topics in 2D
+  * Convex Hulls
+  * Triangulation
+  * Area/Volume Measurement
 
 ####So far I have tested and are working properly:
 
