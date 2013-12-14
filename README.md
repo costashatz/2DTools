@@ -18,6 +18,7 @@
 
 1. Vector2D
 2. Matrix2D
+3. LinearShapes
 
 
 ####WORK IN PROGRESS - WILL BE UPDATED FREQUENTLY
