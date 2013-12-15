@@ -3,3 +3,4 @@ project (2DTools)
 
 add_subdirectory(VectorsMatrices)
 add_subdirectory(LinearShapes)
+add_subdirectory(Polygons)
