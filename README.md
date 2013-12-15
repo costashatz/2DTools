@@ -35,6 +35,7 @@
 1. Vector2D
 2. Matrix2D
 3. LinearShapes
+4. Polygons
 
 
 ####WORK IN PROGRESS - WILL BE UPDATED FREQUENTLY
