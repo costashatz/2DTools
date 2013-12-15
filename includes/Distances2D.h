@@ -1,8 +1,17 @@
 #ifndef DISTANCES_2D_H
 #define DISTANCES_2D_H
+
+/**
+* Includes
+**/
 #include "Polygons.h"
 
-//POINT-LINE
+
+/**
+* Computes Point to Line Distance Squared
+* @param point
+* @param line
+**/
 double DistanceSq(Vector2D point, Line line)
 {
 	Vector2D n = line.n();
@@ -10,6 +19,11 @@ double DistanceSq(Vector2D point, Line line)
 	return (distance*distance);
 }
 
+/**
+* Computes Point to Line Distance
+* @param point
+* @param line
+**/
 double Distance(Vector2D point, Line line)
 {
 	Vector2D n = line.n();
@@ -17,7 +31,12 @@ double Distance(Vector2D point, Line line)
 }
 
 
-//POINT-RAY
+
+/**
+* Computes Point to Ray Distance Squared
+* @param point
+* @param ray
+**/
 double DistanceSq(Vector2D point, Ray ray)
 {
 	Vector2D toP = point-ray.P();
@@ -26,6 +45,11 @@ double DistanceSq(Vector2D point, Ray ray)
 	return toP.LengthSq();
 }
 
+/**
+* Computes Point to Ray Distance
+* @param point
+* @param ray
+**/
 double Distance(Vector2D point, Ray ray)
 {
 	Vector2D toP = point-ray.P();
@@ -35,7 +59,12 @@ double Distance(Vector2D point, Ray ray)
 }
 
 
-//POINT-SEGMENT
+
+/**
+* Computes Point to Segment Distance Squared
+* @param point
+* @param seg
+**/
 double DistanceSq(Vector2D point, Segment seg)
 {
 	Vector2D D = seg.D();
@@ -54,6 +83,11 @@ double DistanceSq(Vector2D point, Segment seg)
 	return DistanceSq(point, Line(seg.P(), seg.D()));
 }
 
+/**
+* Computes Point to Segment Distance
+* @param point
+* @param seg
+**/
 double Distance(Vector2D point, Segment seg)
 {
 	Vector2D D = seg.D();
@@ -73,7 +107,12 @@ double Distance(Vector2D point, Segment seg)
 }
 
 
-//POINT-POLYLINE
+
+/**
+* Computes Point to Polyline Distance Squared
+* @param point
+* @param line
+**/
 double DistanceSq(Vector2D point, Polyline2D line)
 {
 	double m = DistanceSq(point, Segment(line.Vertices()[0], line.Vertices()[1]));
@@ -95,6 +134,11 @@ double DistanceSq(Vector2D point, Polyline2D line)
 	return m;
 }
 
+/**
+* Computes Point to Polyline Distance
+* @param point
+* @param line
+**/
 double Distance(Vector2D point, Polyline2D line)
 {
 	double m = Distance(point, Segment(line.Vertices()[0], line.Vertices()[1]));
