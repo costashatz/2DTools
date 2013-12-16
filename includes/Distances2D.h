@@ -15,8 +15,13 @@
 double DistanceSq(Vector2D point, Line line)
 {
 	Vector2D n = line.n();
-	double distance = abs(n*point-line.c())/n.Length();
+	double distance = abs(n*point+line.c())/n.Length();
 	return (distance*distance);
+}
+
+double DistanceSq(Line line, Vector2D point)
+{
+	return DistanceSq(point,line);
 }
 
 /**
@@ -27,10 +32,13 @@ double DistanceSq(Vector2D point, Line line)
 double Distance(Vector2D point, Line line)
 {
 	Vector2D n = line.n();
-	return (abs(n*point-line.c())/n.Length());
+	return (abs(n*point+line.c())/n.Length());
 }
 
-
+double Distance(Line line, Vector2D point)
+{
+	return Distance(point,line);
+}
 
 /**
 * Computes Point to Ray Distance Squared
@@ -43,6 +51,11 @@ double DistanceSq(Vector2D point, Ray ray)
 	if((ray.D()*toP)>0)
 		return DistanceSq(point,Line(ray.P(), ray.D()));
 	return toP.LengthSq();
+}
+
+double DistanceSq(Ray ray, Vector2D point)
+{
+	return DistanceSq(point,ray);
 }
 
 /**
@@ -58,6 +71,10 @@ double Distance(Vector2D point, Ray ray)
 	return toP.Length();
 }
 
+double Distance(Ray ray, Vector2D point)
+{
+	return Distance(point,ray);
+}
 
 
 /**
@@ -83,6 +100,11 @@ double DistanceSq(Vector2D point, Segment seg)
 	return DistanceSq(point, Line(seg.P(), seg.D()));
 }
 
+double DistanceSq(Segment seg, Vector2D point)
+{
+	return DistanceSq(point,seg);
+}
+
 /**
 * Computes Point to Segment Distance
 * @param point
@@ -106,6 +128,10 @@ double Distance(Vector2D point, Segment seg)
 	return Distance(point, Line(seg.P(), seg.D()));
 }
 
+double Distance(Segment seg, Vector2D point)
+{
+	return Distance(point,seg);
+}
 
 
 /**
@@ -117,14 +143,14 @@ double DistanceSq(Vector2D point, Polyline2D line)
 {
 	double m = DistanceSq(point, Segment(line.Vertices()[0], line.Vertices()[1]));
 	Vector2D prev = line.Vertices()[1];
-	double prevX = prev.X()-point.X();
-	double prevY = prev.Y()-point.Y();
+	double prevX = abs(prev.X()-point.X());
+	double prevY = abs(prev.Y()-point.Y());
 	double currX, currY;
 	for(int i=1;i<line.Vertices().size()-1;i++)
 	{
-		currX = line.Vertices()[i+1].X()-point.X();
-		currY = line.Vertices()[i+1].X()-point.X();
-		if((prevX*prevX <= m && currX*currX <= m && (prevX*currX)>0) && (prevY*prevY <= m && currY*currY <= m && (prevY*currY)>0))
+		currX = abs(line.Vertices()[i].X()-point.X());
+		currY = abs(line.Vertices()[i].Y()-point.Y());
+		if((prevX <= m && currX <= m && (prevX*currX)>0) && (prevY <= m && currY <= m && (prevY*currY)>0))
 		{
 			m = DistanceSq(point, Segment(line.Vertices()[i], line.Vertices()[i+1]));
 		}
@@ -134,6 +160,10 @@ double DistanceSq(Vector2D point, Polyline2D line)
 	return m;
 }
 
+double DistanceSq(Polyline2D line, Vector2D point)
+{
+	return DistanceSq(point,line);
+}
 /**
 * Computes Point to Polyline Distance
 * @param point
@@ -148,8 +178,8 @@ double Distance(Vector2D point, Polyline2D line)
 	double currX, currY;
 	for(int i=1;i<line.Vertices().size()-1;i++)
 	{
-		currX = abs(line.Vertices()[i+1].X()-point.X());
-		currY = abs(line.Vertices()[i+1].X()-point.X());
+		currX = abs(line.Vertices()[i].X()-point.X());
+		currY = abs(line.Vertices()[i].Y()-point.Y());
 		if((prevX <= m && currX <= m && (prevX*currX)>0) && (prevY <= m && currY <= m && (prevY*currY)>0))
 		{
 			m = Distance(point, Segment(line.Vertices()[i], line.Vertices()[i+1]));
@@ -160,8 +190,16 @@ double Distance(Vector2D point, Polyline2D line)
 	return m;
 }
 
+double Distance(Polyline2D line, Vector2D point)
+{
+	return Distance(point,line);
+}
 
-//LINE-LINE
+/**
+* Computes Line to Line Distance Squared
+* @param line1
+* @param line2
+**/
 double DistanceSq(Line line1, Line line2)
 {
 	Vector2D d2P = line2.D().Perp2();
@@ -172,7 +210,11 @@ double DistanceSq(Line line1, Line line2)
 	return (a*a)/line1.D().LengthSq();
 }
 
-
+/**
+* Computes Line to Line Distance
+* @param line1
+* @param line2
+**/
 double Distance(Line line1, Line line2)
 {
 	Vector2D d2P = line2.D().Perp2();
@@ -183,7 +225,13 @@ double Distance(Line line1, Line line2)
 	return a/line1.D().Length();
 }
 
-//LINE-RAY
+
+
+/**
+* Computes Line to Ray Distance Squared
+* @param line
+* @param ray
+**/
 double DistanceSq(Line line, Ray ray)
 {
 	Vector2D n0 = line.n();
@@ -194,6 +242,15 @@ double DistanceSq(Line line, Ray ray)
 	return ((a*a)/n0.LengthSq());
 }
 
+double DistanceSq(Ray ray, Line line)
+{
+	return DistanceSq(line,ray);
+}
+/**
+* Computes Line to Ray Distance
+* @param line
+* @param ray
+**/
 double Distance(Line line, Ray ray)
 {
 	Vector2D n0 = line.n();
@@ -203,7 +260,17 @@ double Distance(Line line, Ray ray)
 	return (abs(n0*ray.P()-c0)/n0.Length());
 }
 
-//LINE-SEGMENT
+double Distance(Ray ray, Line line)
+{
+	return Distance(line,ray);
+}
+
+
+/**
+* Computes Line to Segment Distance Squared
+* @param line
+* @param seg
+**/
 double DistanceSq(Line line, Segment seg)
 {
 	Vector2D Q0 = seg.P();
@@ -221,6 +288,15 @@ double DistanceSq(Line line, Segment seg)
 	return min(a,b);
 }
 
+double DistanceSq(Segment seg, Line line)
+{
+	return DistanceSq(line,seg);
+}
+/**
+* Computes Line to Segment Distance
+* @param line
+* @param seg
+**/
 double Distance(Line line, Segment seg)
 {
 	Vector2D Q0 = seg.P();
@@ -236,6 +312,9 @@ double Distance(Line line, Segment seg)
 	return min(abs(a),abs(b));
 }
 
-//RAY-RAY
+double Distance(Segment seg, Line line)
+{
+	return Distance(line,seg);
+}
 
 #endif
