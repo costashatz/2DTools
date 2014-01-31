@@ -1,4 +1,4 @@
-###Simple Library for Mathematics for 2D Graphics
+###Simple Mathematics Library for 2D Graphics
 
 ####So far I have implemented:
 
