@@ -29,7 +29,7 @@ public:
 	/**
 	* Constructor
 	* @param a - value to be assigned to x
-	* @param b - value to be assigned to x
+	* @param b - value to be assigned to y
 	**/
 	Vector2D(double a, double b):x(a),y(b){}
 
