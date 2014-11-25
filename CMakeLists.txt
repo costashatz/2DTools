@@ -8,6 +8,7 @@ file(GLOB_RECURSE _srcs
 SET( CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -fpermissive" )
 
 option(BUILD_TEST "Use Gtest to create the test cases for the code" OFF)
+option(BUILD_EXAMPLES "Build examples of the code" OFF)
 
 if(BUILD_TEST)
     # Setup testing
@@ -42,5 +43,6 @@ if(BUILD_TEST)
              COMMAND ${PROJECT_TEST_NAME})
 endif()
 
-
-add_subdirectory(Examples)
+if(BUILD_EXAMPLES)
+  add_subdirectory(Examples)
+endif()
