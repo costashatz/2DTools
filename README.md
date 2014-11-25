@@ -1,5 +1,44 @@
 ###Simple Templated Mathematics Library for 2D Graphics
 
+####How to compile:
+
+```
+cd path/to/2DTools
+mkdir build && cd build
+cmake ..
+make
+```
+
+* Optional CMake options:
+	1. BUILD_TEST (ON/OFF) - Determine to either build tests or not. Defaults to OFF.
+	2. BUILD_EXAMPLES (ON/OFF) - Specify whether you want to build tests or not. Defaults to OFF.
+
+####How to use:
+
+* You can just edit the CMakeLists.txt and include the headers to your project (after all it is just a header library).
+* Via ExternalProject to always get latest edition:
+	```cmake
+	include(ExternalProject)
+	ExternalProject_Add(2DToolsProj
+	    GIT_REPOSITORY "https://github.com/costashatz/2DTools"
+	    CMAKE_ARGS -DBUILD_TEST=OFF -DBUILD_EXAMPLES=OFF
+	    PREFIX "${CMAKE_CURRENT_BINARY_DIR}"
+	    INSTALL_COMMAND ""
+	)
+	# Specify include dir
+	ExternalProject_Get_Property(2DToolsProj source_dir)
+	set(2DTOOLS_INCLUDE_DIRS ${source_dir}/include)
+
+	# Specify MainTest's link libraries
+	ExternalProject_Get_Property(2DToolsProj binary_dir)
+	set(2DTOOLS_LIBS_DIR ${binary_dir})
+
+	link_directories(${2DTOOLS_LIBS_DIR})
+	include_directories(${PROJECT_SOURCE_DIR}/include ${2DTOOLS_INCLUDE_DIRS})
+	....
+	target_link_libraries(mytarget 2DTools)
+	```
+
 ####So far I have implemented:
 
 1. Vector2D
