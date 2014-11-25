@@ -135,7 +135,7 @@ public:
     * @param p1 - the second point of the triangle
     * @param p2 - the third point of the triangle
     **/
-    Triangle2D(Vector2D<T> p0, Vector2D<T> p1, Vector2D<T> p2):Polygon2D<T>()
+    Triangle2D(const Vector2D<T>& p0, const Vector2D<T>& p1, const Vector2D<T>& p2):Polygon2D<T>()
     {
         Polygon2D<T>::AddPoint(p0);
         Polygon2D<T>::AddPoint(p1);
@@ -165,7 +165,7 @@ public:
     * @param e0 - direction (with length) of horizontal edge
     * @param e1 - direction (with length) of vertical edge
     **/
-    Rectangle2D(Vector2D<T> p0, Vector2D<T> e0, Vector2D<T> e1):Polygon2D<T>()
+    Rectangle2D(const Vector2D<T>& p0, const Vector2D<T>& e0, const Vector2D<T>& e1):Polygon2D<T>()
     {
         if((e0*e1)!=0)
             e1 = e0.Perp();
@@ -182,7 +182,7 @@ public:
     * @param a - length of horizontal edge
     * @param b - length of vertical edge
     **/
-    Rectangle2D(Vector2D<T> p, double a, double b)
+    Rectangle2D(const Vector2D<T>& p, const T& a, const T& b)
     {
         Vector2D<T> p0 = Vector2D<T>(p.X()-a/2.0, p.Y()-b/2.0);
         Polygon2D<T>::AddPoint(p0);

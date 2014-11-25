@@ -1,5 +1,5 @@
-#ifndef AI_GAME_ENGINE_HELPER_HPP
-#define AI_GAME_ENGINE_HELPER_HPP
+#ifndef HELPER_HPP
+#define HELPER_HPP
 #include <limits>
 #define minimum(x,y) (x>y)?x:y
 

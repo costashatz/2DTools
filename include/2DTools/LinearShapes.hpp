@@ -34,7 +34,7 @@ public:
     * @param P - point P
     * @param D - direction vector d
     **/
-    LinearShape(Vector2D<T> P, Vector2D<T> D):p(P),d(D){}
+    LinearShape(const Vector2D<T>& P, const Vector2D<T>& D):p(P),d(D){}
 
     /**
     * Copy Constructor
@@ -101,7 +101,7 @@ public:
     * @param P - point P
     * @param D - direction vector d
     **/
-    Line(Vector2D<T> P, Vector2D<T> D):LinearShape<T>(P,D){}
+    Line(const Vector2D<T>& P, const Vector2D<T>& D):LinearShape<T>(P,D){}
 
     /**
     * Constructor - Implicit Form
@@ -109,7 +109,7 @@ public:
     * @param b - "b" value
     * @param c - "c" value
     **/
-    Line(T a, T b, T c):LinearShape<T>()
+    Line(const T& a, const T& b, const T& c):LinearShape<T>()
     {
         this->d = Vector2D<T>(-b,a);
         this->p = Vector2D<T>(-a*c,-b*c);
@@ -121,7 +121,7 @@ public:
     * @param n - Normal Vector
     * @param d - "d" value
     **/
-    Line(Vector2D<T> n, T d)
+    Line(const Vector2D<T>& n, const T& d)
     {
         Line(n.X(),n.Y(),-d);
     }
@@ -146,7 +146,7 @@ public:
     * @param P - point P
     * @param D - direction vector d
     **/
-    Ray(Vector2D<T> P, Vector2D<T> D):LinearShape<T>(P,D){}
+    Ray(const Vector2D<T>& P, const Vector2D<T>& D):LinearShape<T>(P,D){}
 };
 
 
@@ -168,11 +168,11 @@ public:
     * @param P0 - starting point
     * @param P1 - ending point
     **/
-    Segment(Vector2D<T> P0, Vector2D<T> P1):LinearShape<T>(P0, P1-P0){}
+    Segment(const Vector2D<T>& P0, const Vector2D<T>& P1):LinearShape<T>(P0, P1-P0){}
 
 
     /**
-    * Get Starting Point P0 - Is exactly the same as P() - I've included for clarity/completeness
+    * Get Starting Point P0 - Is exactly the same as P() - I've included it for clarity/completeness
     * @return Vector2D - the Starting Point P0
     **/
     Vector2D<T> P0()const {return this->p;}

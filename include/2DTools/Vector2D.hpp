@@ -34,7 +34,7 @@ public:
     * @param a - value to be assigned to x
     * @param b - value to be assigned to y
     **/
-    Vector2D(T a, T b):x(a),y(b){}
+    Vector2D(const T& a, const T& b):x(a),y(b){}
 
     /**
     * Copy Constructor
@@ -194,7 +194,7 @@ public:
         y += other.y;
         return *this;
     }
-    const Vector2D& operator*=(const double& other)
+    const Vector2D& operator*=(const T& other)
     {
         x *= other;
         y *= other;
@@ -204,10 +204,10 @@ public:
     // Used for Matrix-Vector multiplications
     inline const Vector2D& operator*=(const Matrix2D<T>& other);
 
-    const Vector2D& operator/=(const double& other)
+    const Vector2D& operator/=(const T& other)
     {
         // Divide only if other is not zero
-        if(other > std::numeric_limits<double>::epsilon())
+        if(other > std::numeric_limits<T>::epsilon())
         {
             x /= other;
             y /= other;

@@ -84,7 +84,7 @@ public:
     * @param dx - translation offset in x-axis
     * @param dy - translation offset in y-axis
     **/
-    void Translate(T dx, T dy)
+    void Translate(const T& dx, const T& dy)
     {
         Matrix2D temp = Matrix2D();
         temp.data[2][0] = dx;
@@ -97,7 +97,7 @@ public:
     * @param dx - scale offset in x-axis
     * @param dy - scale offset in y-axis
     **/
-    void Scale(T dx, T dy)
+    void Scale(const T& dx, const T& dy)
     {
         Matrix2D temp = Matrix2D();
         temp.data[0][0] = dx;
@@ -109,7 +109,7 @@ public:
     * Rotate this Matrix (xy-Cartesian plane counter-clockwise through an angle "angle" about the origin)
     * @param angle - angle in radians
     **/
-    void Rotate(T angle)
+    void Rotate(const T& angle)
     {
         double c = cos(angle);
         double s = sin(angle);
@@ -125,9 +125,9 @@ public:
     * Rotate this Matrix (xy-Cartesian plane counter-clockwise through an angle "angle" about the origin)
     * @param angle - angle in degrees
     **/
-    void RotateDegrees(T angle)
+    void RotateDegrees(const T& angle)
     {
-        double a = DegreesToRadians(angle);
+        T a = DegreesToRadians(angle);
         Rotate(a);
     }
 
@@ -136,7 +136,7 @@ public:
     * @param fwd - the Forward Vector
     * @param side - the Side Vector
     **/
-    void Rotate(Vector2D<T> fwd, Vector2D<T> side)
+    void Rotate(const Vector2D<T>& fwd, const Vector2D<T>& side)
     {
         Matrix2D temp = Matrix2D();
         temp.data[0][0] = fwd.X();
@@ -198,7 +198,7 @@ public:
     * Overload basic operators
     * mathematic operators (*,/)
     **/
-    const Matrix2D& operator*=(const double& other)
+    const Matrix2D& operator*=(const T& other)
     {
         for(int i=0;i<3;i++)
         {
@@ -208,12 +208,16 @@ public:
         return *this;
     }
 
-    const Matrix2D& operator/=(const double& other)
+    const Matrix2D& operator/=(const T& other)
     {
-        for(int i=0;i<3;i++)
+        // Divide only if other is not zero
+        if(other > std::numeric_limits<T>::epsilon())
         {
-            for(int j=0;j<3;j++)
-                data[i][j] /= other;
+            for(int i=0;i<3;i++)
+            {
+                for(int j=0;j<3;j++)
+                    data[i][j] /= other;
+            }
         }
         return *this;
     }
