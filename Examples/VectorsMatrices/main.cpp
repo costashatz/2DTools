@@ -1,8 +1,9 @@
 #include <iostream>
-#include "helper.h"
-#include "Matrix2D.h"
-#include "Distances2D.h"
+#include <2DTools/Helper.hpp>
+#include <2DTools/Matrix2D.hpp>
+#include <2DTools/Distances2D.hpp>
 using namespace std;
+using namespace Tools2D;
 
 /**
 * Simple Example using Vector2D and Matrix2D classes
@@ -11,15 +12,15 @@ using namespace std;
 int main()
 {
 	//Vector Addition
-	Vector2D a = Vector2D(10,7);
-	Vector2D b = Vector2D(-2,1);
-	Vector2D c = a+b;
+	Vector2Df a = Vector2Df(10,7);
+	Vector2Df b = Vector2Df(-2,1);
+	Vector2Df c = a+b;
 	cout<<"("<<a.X()<<" "<<a.Y()<<") + ("<<b.X()<<" "<<b.Y()<<") = ("<<c.X()<<" "<<c.Y()<<")\n";
 	//Translation
-	Matrix2D mat = Matrix2D();
+	Matrix2Df mat = Matrix2Df();
 	mat.Identity();
 	mat.Translate(2,3);
-	double** data;
+	float** data;
 	data = mat.getData(); //get the matrix data
 	cout<<"Matrix -- Column Major (so far...maybe row major in next push)\n";
 	for(int i=0;i<3;i++)
@@ -34,7 +35,7 @@ int main()
 	c = a*mat;
 	cout<<"("<<a.X()<<" "<<a.Y()<<") Traslated by ("<<2<<" "<<3<<") = ("<<c.X()<<" "<<c.Y()<<")\n";
 	//Rotation
-	a = Vector2D(1,2);
+	a = Vector2Df(1,2);
 	mat.Identity();
 	mat.Rotate(HalfPi);
 	c = a*mat;

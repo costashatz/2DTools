@@ -1,4 +1,4 @@
-###Simple Mathematics Library for 2D Graphics
+###Simple Templated Mathematics Library for 2D Graphics
 
 ####So far I have implemented:
 
@@ -12,6 +12,7 @@
     * Simple Classes for Basic Linear Shapes (Line, Ray, Segment)
 5. Distances2D
     * Distances between Polygons and Linear Shapes etc..
+6. Simple Unit Tests with gtest
 
 ####Planning to implement:
 
@@ -36,6 +37,7 @@
 2. Matrix2D
 3. LinearShapes
 4. Polygons
+5. Distances
 
 
 ####WORK IN PROGRESS - WILL BE UPDATED FREQUENTLY
