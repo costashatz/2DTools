@@ -3,4 +3,4 @@ project (2DTools)
 
 
 add_executable(VectorsMatrices main.cpp)
-target_link_libraries(VectorsMatrices lib${PROJECT_NAME})
+target_link_libraries(VectorsMatrices ${PROJECT_NAME})

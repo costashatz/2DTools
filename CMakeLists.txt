@@ -17,9 +17,9 @@ if(BUILD_TEST)
     include_directories(${GTEST_INCLUDE_DIRS})
 endif()
 
-add_library(lib${PROJECT_NAME} SHARED ${_srcs})
-target_include_directories(lib${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
-SET_TARGET_PROPERTIES(lib${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
+add_library(${PROJECT_NAME} SHARED ${_srcs})
+target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
+SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 if(BUILD_TEST)
     ##############
@@ -31,7 +31,7 @@ if(BUILD_TEST)
 
     #target_link_libraries(${PROJECT_TEST_NAME} ${PROJECT_NAME})
     target_link_libraries(${PROJECT_TEST_NAME}
-                          lib${PROJECT_NAME}
+                          ${PROJECT_NAME}
                           ${GTEST_LIBS_DIR}/libgtest.a
                           ${GTEST_LIBS_DIR}/libgtest_main.a
                           pthread)

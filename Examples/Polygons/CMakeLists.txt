@@ -3,4 +3,4 @@ project (2DTools)
 
 
 add_executable(Polygons main.cpp)
-target_link_libraries(Polygons lib${PROJECT_NAME})
+target_link_libraries(Polygons ${PROJECT_NAME})

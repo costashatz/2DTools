@@ -3,4 +3,4 @@ project (2DTools)
 
 
 add_executable(Distances main.cpp)
-target_link_libraries(Distances lib${PROJECT_NAME})
+target_link_libraries(Distances ${PROJECT_NAME})
