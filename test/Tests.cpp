@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include <2DTools/Vector2D.hpp>
 #include <2DTools/Matrix2D.hpp>
+#include <2DTools/Matrix1D.hpp>
 #include <2DTools/Primitives/Polygons.hpp>
 #include <2DTools/Distances/Distances2D.hpp>
 using namespace Tools2D;
@@ -101,6 +102,48 @@ TEST(Matrix2DTest, Multiplication) {
     EXPECT_EQ(t(2,0), 2);
     EXPECT_EQ(t(2,1), 0);
     EXPECT_EQ(t(2,2), 1);
+}
+
+TEST(Matrix1DTest, DefaultConstructor) {
+    Matrix1D<double> tmp;
+    double** d = tmp.getData();
+    for(int i=0;i<2;i++) {
+        for(int j=0;j<2;j++) {
+            if(i==j)
+                EXPECT_EQ(d[i][j], 1.0);
+            else
+                EXPECT_EQ(d[i][j], 0.0);
+        }
+    }
+}
+
+TEST(Matrix1DTest, Identity) {
+    Matrix1D<double> tmp;
+    Matrix1D<double> tr = tmp.Transpose();
+    Matrix1D<double> inv = tmp.Inverse();
+    double** d1 = tmp.getData();
+    double** d2 = tmp.getData();
+    double** d3 = tmp.getData();
+    for(int i=0;i<2;i++) {
+        for(int j=0;j<2;j++) {
+            EXPECT_EQ(d1[i][j], d2[i][j]);
+            EXPECT_EQ(d3[i][j], d2[i][j]);
+        }
+    }
+}
+
+TEST(Matrix1DTest, Multiplication) {
+    Matrix1D<double> tmp;
+    tmp(0,1) = 2;
+    tmp(1,1) = 3;
+    Matrix1D<double> tmp2;
+    tmp2(1,0) = 1;
+    tmp2(0,0) = 2;
+    Matrix1D<double> t = tmp*tmp2;
+    EXPECT_EQ(t(0,0), 4);
+    EXPECT_EQ(t(0,1), 2);
+    EXPECT_EQ(t(1,0), 3);
+    EXPECT_EQ(t(1,1), 3);
 }
 
 TEST(PolygonsTest, Polyline) {

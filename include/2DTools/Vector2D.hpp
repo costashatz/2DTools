@@ -12,6 +12,9 @@ namespace Tools2D {
 template<class T>
 class Matrix2D;
 
+template<class T>
+class Matrix1D;
+
 
 /**
 * Simple 2D Vector Class
@@ -203,6 +206,7 @@ public:
 
     // Used for Matrix-Vector multiplications
     inline const Vector2D& operator*=(const Matrix2D<T>& other);
+    inline const Vector2D& operator*=(const Matrix1D<T>& other);
 
     const Vector2D& operator/=(const T& other)
     {
