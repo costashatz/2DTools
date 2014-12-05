@@ -1,4 +1,4 @@
-#ifndef MATRIX_1_HPP
+#ifndef MATRIX_1D_HPP
 #define MATRIX_1D_HPP
 
 /**
