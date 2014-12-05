@@ -241,6 +241,38 @@ public:
         return *this;
     }
 
+    const Matrix2D& operator-=(const Matrix2D& other)
+    {
+        Matrix2D temp = Matrix2D();
+        temp.data[0][0] = data[0][0]-other.data[0][0];
+        temp.data[0][1] = data[0][1]-other.data[0][1];
+        temp.data[0][2] = data[0][2]-other.data[0][2];
+        temp.data[1][0] = data[1][0]-other.data[1][0];
+        temp.data[1][1] = data[1][1]-other.data[1][1];
+        temp.data[1][2] = data[1][2]-other.data[1][2];
+        temp.data[2][0] = data[2][0]-other.data[2][0];
+        temp.data[2][1] = data[2][1]-other.data[2][1];
+        temp.data[2][2] = data[2][2]-other.data[2][2];
+        (*this) = temp;
+        return *this;
+    }
+
+    const Matrix2D& operator+=(const Matrix2D& other)
+    {
+        Matrix2D temp = Matrix2D();
+        temp.data[0][0] = data[0][0]+other.data[0][0];
+        temp.data[0][1] = data[0][1]+other.data[0][1];
+        temp.data[0][2] = data[0][2]+other.data[0][2];
+        temp.data[1][0] = data[1][0]+other.data[1][0];
+        temp.data[1][1] = data[1][1]+other.data[1][1];
+        temp.data[1][2] = data[1][2]+other.data[1][2];
+        temp.data[2][0] = data[2][0]+other.data[2][0];
+        temp.data[2][1] = data[2][1]+other.data[2][1];
+        temp.data[2][2] = data[2][2]+other.data[2][2];
+        (*this) = temp;
+        return *this;
+    }
+
     /**
     * Overloading () operator
     * Access Matrix Matlab-like
@@ -282,10 +314,29 @@ Matrix2D<T> operator*(T val, const Matrix2D<T>& mat1)
 }
 
 template<class T>
-Matrix2D<T> operator/(const Matrix2D<T>& mat1, T val)
+Matrix2D<T> operator/(const Matrix2D<T>& mat1, const T& val)
 {
     Matrix2D<T> temp = Matrix2D<T>(mat1);
     temp /= val;
+    return temp;
+}
+
+template<class T>
+Matrix2D<T> operator/(const T& val, const Matrix2D<T>& mat1)
+{
+    Matrix2D<T> temp = Matrix2D<T>(mat1);
+    if(std::abs(val) > std::numeric_limits<T>::epsilon())
+    {
+        temp.data[0][0] /= val;
+        temp.data[0][1] /= val;
+        temp.data[0][2] /= val;
+        temp.data[1][0] /= val;
+        temp.data[1][1] /= val;
+        temp.data[1][2] /= val;
+        temp.data[2][0] /= val;
+        temp.data[2][1] /= val;
+        temp.data[2][2] /= val;
+    }
     return temp;
 }
 
@@ -294,6 +345,31 @@ Matrix2D<T> operator*(const Matrix2D<T>& mat1, const Matrix2D<T>& mat2)
 {
     Matrix2D<T> temp = Matrix2D<T>(mat1);
     temp *= mat2;
+    return temp;
+}
+
+template<class T>
+Matrix2D<T> operator-(const Matrix2D<T>& mat)
+{
+    Matrix2D<T> temp;
+    temp.data[0][0] = temp.data[1][1] = temp.data[2][2] = 0.0;
+    temp -= mat;
+    return temp;
+}
+
+template<class T>
+Matrix2D<T> operator-(const Matrix2D<T>& mat1, const Matrix2D<T>& mat2)
+{
+    Matrix2D<T> temp = Matrix2D<T>(mat1);
+    temp -= mat2;
+    return temp;
+}
+
+template<class T>
+Matrix2D<T> operator+(const Matrix2D<T>& mat1, const Matrix2D<T>& mat2)
+{
+    Matrix2D<T> temp = Matrix2D<T>(mat1);
+    temp += mat2;
     return temp;
 }
 

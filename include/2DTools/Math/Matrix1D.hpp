@@ -242,6 +242,17 @@ public:
         return *this;
     }
 
+    const Matrix1D& operator+=(const Matrix1D& other)
+    {
+        Matrix1D temp = Matrix1D();
+        temp.data[0][0] = data[0][0]+other.data[0][0];
+        temp.data[0][1] = data[0][1]+other.data[0][1];
+        temp.data[1][0] = data[1][0]+other.data[1][0];
+        temp.data[1][1] = data[1][1]+other.data[1][1];
+        (*this) = temp;
+        return *this;
+    }
+
     /**
     * Overloading () operator
     * Access Matrix Matlab-like
@@ -283,10 +294,24 @@ Matrix1D<T> operator*(T val, const Matrix1D<T>& mat1)
 }
 
 template<class T>
-Matrix1D<T> operator/(const Matrix1D<T>& mat1, T val)
+Matrix1D<T> operator/(const Matrix1D<T>& mat1, const T& val)
 {
     Matrix1D<T> temp = Matrix1D<T>(mat1);
     temp /= val;
+    return temp;
+}
+
+template<class T>
+Matrix1D<T> operator/(const T& val, const Matrix1D<T>& mat1)
+{
+    Matrix1D<T> temp = Matrix1D<T>(mat1);
+    if(std::abs(val) > std::numeric_limits<T>::epsilon())
+    {
+        temp.data[0][0] /= val;
+        temp.data[0][1] /= val;
+        temp.data[1][0] /= val;
+        temp.data[1][1] /= val;
+    }
     return temp;
 }
 
@@ -299,10 +324,27 @@ Matrix1D<T> operator*(const Matrix1D<T>& mat1, const Matrix1D<T>& mat2)
 }
 
 template<class T>
+Matrix1D<T> operator-(const Matrix1D<T>& mat)
+{
+    Matrix1D<T> temp;
+    temp.data[0][0] = temp.data[1][1] = 0.0;
+    temp -= mat;
+    return temp;
+}
+
+template<class T>
 Matrix1D<T> operator-(const Matrix1D<T>& mat1, const Matrix1D<T>& mat2)
 {
     Matrix1D<T> temp = Matrix1D<T>(mat1);
     temp -= mat2;
+    return temp;
+}
+
+template<class T>
+Matrix1D<T> operator+(const Matrix1D<T>& mat1, const Matrix1D<T>& mat2)
+{
+    Matrix1D<T> temp = Matrix1D<T>(mat1);
+    temp += mat2;
     return temp;
 }
 
