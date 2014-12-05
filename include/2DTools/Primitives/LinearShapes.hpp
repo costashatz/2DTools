@@ -4,7 +4,7 @@
 /**
 * Includes
 **/
-#include <2DTools/Vector2D.hpp>
+#include <2DTools/Math/Vector2D.hpp>
 
 namespace Tools2D {
 
@@ -197,14 +197,14 @@ public:
     T LengthSq()const { return this->d.LengthSq();}
 };
 
-typedef LinearShape<double> LinearShaped;
-typedef LinearShape<float> LinearShapef;
-typedef Line<double> Lined;
-typedef Line<float> Linef;
-typedef Ray<double> Rayd;
-typedef Ray<float> Rayf;
-typedef Segment<double> Segmentd;
-typedef Segment<float> Segmentf;
+typedef LinearShape<double> LinearShape2d;
+typedef LinearShape<float> LinearShape2;
+typedef Line<double> Line2d;
+typedef Line<float> Line2;
+typedef Ray<double> Ray2d;
+typedef Ray<float> Ray2;
+typedef Segment<double> Segment2d;
+typedef Segment<float> Segment2;
 
 }
 

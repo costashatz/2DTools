@@ -5,7 +5,7 @@
 * Includes
 **/
 #include <cstring>
-#include <2DTools/Vector2D.hpp>
+#include <2DTools/Math/Vector2D.hpp>
 
 namespace Tools2D {
 

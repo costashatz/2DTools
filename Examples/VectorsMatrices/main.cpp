@@ -1,7 +1,7 @@
 #include <iostream>
 #include <2DTools/Misc/Helper.hpp>
-#include <2DTools/Matrix2D.hpp>
-#include <2DTools/Vector2D.hpp>
+#include <2DTools/Math/Matrix2D.hpp>
+#include <2DTools/Math/Vector2D.hpp>
 using namespace std;
 using namespace Tools2D;
 
@@ -12,12 +12,12 @@ using namespace Tools2D;
 int main()
 {
 	//Vector Addition
-	Vector2Df a = Vector2Df(10,7);
-	Vector2Df b = Vector2Df(-2,1);
-	Vector2Df c = a+b;
+    Vector2 a = Vector2(10,7);
+    Vector2 b = Vector2(-2,1);
+    Vector2 c = a+b;
 	cout<<"("<<a.X()<<" "<<a.Y()<<") + ("<<b.X()<<" "<<b.Y()<<") = ("<<c.X()<<" "<<c.Y()<<")\n";
 	//Translation
-	Matrix2Df mat = Matrix2Df();
+    Matrix2 mat = Matrix2();
 	mat.Identity();
 	mat.Translate(2,3);
 	float** data;
@@ -35,7 +35,7 @@ int main()
 	c = a*mat;
 	cout<<"("<<a.X()<<" "<<a.Y()<<") Traslated by ("<<2<<" "<<3<<") = ("<<c.X()<<" "<<c.Y()<<")\n";
 	//Rotation
-	a = Vector2Df(1,2);
+    a = Vector2(1,2);
 	mat.Identity();
 	mat.Rotate(HalfPi);
 	c = a*mat;

@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
-#include <2DTools/Vector2D.hpp>
-#include <2DTools/Matrix2D.hpp>
-#include <2DTools/Matrix1D.hpp>
+#include <2DTools/Math/Vector2D.hpp>
+#include <2DTools/Math/Matrix2D.hpp>
+#include <2DTools/Math/Matrix1D.hpp>
 #include <2DTools/Primitives/Polygons.hpp>
 #include <2DTools/Distances/Distances2D.hpp>
 using namespace Tools2D;
@@ -185,8 +185,8 @@ TEST(DistancesTest, PointLine) {
 }
 
 TEST(DistancesTest, PointLineTypedef) {
-    Lined l(2.0, 3.0, 1.0);
-    Vector2Dd p(0.0, 0.0);
+    Line2d l(2.0, 3.0, 1.0);
+    Vector2d p(0.0, 0.0);
 
     EXPECT_EQ(Distance(p, l), 1/sqrt(13.0));
 }

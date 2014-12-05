@@ -204,14 +204,14 @@ public:
     }
 };
 
-typedef Polyline2D<double> Polyline2Dd;
-typedef Polyline2D<float> Polyline2Df;
-typedef Polygon2D<double> Polygon2Dd;
-typedef Polygon2D<float> Polygon2Df;
-typedef Triangle2D<double> Triangle2Dd;
-typedef Triangle2D<float> Triangle2Df;
-typedef Rectangle2D<double> Rectangle2Dd;
-typedef Rectangle2D<float> Rectangle2Df;
+typedef Polyline2D<double> Polyline2d;
+typedef Polyline2D<float> Polyline2;
+typedef Polygon2D<double> Polygon2d;
+typedef Polygon2D<float> Polygon2;
+typedef Triangle2D<double> Triangle2d;
+typedef Triangle2D<float> Triangle2;
+typedef Rectangle2D<double> Rectangle2d;
+typedef Rectangle2D<float> Rectangle2;
 
 }
 

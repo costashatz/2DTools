@@ -5,7 +5,7 @@
 * Includes
 **/
 #include <cstring>
-#include <2DTools/Vector2D.hpp>
+#include <2DTools/Math/Vector2D.hpp>
 
 namespace Tools2D {
 
@@ -315,8 +315,8 @@ const Vector2D<T>& Vector2D<T>::operator *=(const Matrix2D<T>& other)
     return *this;
 }
 
-typedef Matrix2D<double> Matrix2Dd;
-typedef Matrix2D<float> Matrix2Df;
+typedef Matrix2D<double> Matrix2d;
+typedef Matrix2D<float> Matrix2;
 
 }
 

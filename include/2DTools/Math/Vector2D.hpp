@@ -283,8 +283,8 @@ Vector2D<T> operator/(const Vector2D<T>& vec, T val)
     return res;
 }
 
-typedef Vector2D<double> Vector2Dd;
-typedef Vector2D<float> Vector2Df;
+typedef Vector2D<double> Vector2d;
+typedef Vector2D<float> Vector2;
 
 }
 
