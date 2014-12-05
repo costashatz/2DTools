@@ -4,7 +4,7 @@
 /**
 * Includes
 **/
-#include <2DTools/LinearShapes.hpp>
+#include <2DTools/Primitives/LinearShapes.hpp>
 #include <vector>
 using std::vector;
 

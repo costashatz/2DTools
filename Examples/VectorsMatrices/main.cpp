@@ -1,7 +1,7 @@
 #include <iostream>
-#include <2DTools/Helper.hpp>
+#include <2DTools/Misc/Helper.hpp>
 #include <2DTools/Matrix2D.hpp>
-#include <2DTools/Distances2D.hpp>
+#include <2DTools/Vector2D.hpp>
 using namespace std;
 using namespace Tools2D;
 

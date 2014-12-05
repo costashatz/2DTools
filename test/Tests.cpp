@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
 #include <2DTools/Vector2D.hpp>
 #include <2DTools/Matrix2D.hpp>
-#include <2DTools/Polygons.hpp>
-#include <2DTools/Distances2D.hpp>
+#include <2DTools/Primitives/Polygons.hpp>
+#include <2DTools/Distances/Distances2D.hpp>
 using namespace Tools2D;
 
 TEST(Vector2DTest, DefaultConstructor) {

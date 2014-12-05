@@ -4,8 +4,8 @@
 /**
 * Includes
 **/
-#include <2DTools/Helper.hpp>
-#include <2DTools/Polygons.hpp>
+#include <2DTools/Misc/Helper.hpp>
+#include <2DTools/Primitives/Polygons.hpp>
 
 
 namespace Tools2D {
