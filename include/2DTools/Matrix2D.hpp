@@ -51,16 +51,8 @@ public:
     **/
     void Identity()
     {
-        for(int i=0;i<3;i++)
-        {
-            for(int j=0;j<3;j++)
-            {
-                if(i==j)
-                    data[i][j] = 1;
-                else
-                    data[i][j] = 0;
-            }
-        }
+        memset(data, 0, 9*sizeof(T));
+        data[0][0] = data[1][1] = data[2][2] = 1;
     }
 
     /**
