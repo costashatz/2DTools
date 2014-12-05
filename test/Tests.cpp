@@ -146,6 +146,21 @@ TEST(Matrix1DTest, Multiplication) {
     EXPECT_EQ(t(1,1), 3);
 }
 
+TEST(Matrix1DTest, Eigenvalues) {
+    Matrix1D<double> tmp;
+    tmp(1,0) = 3;
+    tmp(0,1) = 3;
+    Matrix1D<double> eigD;
+    Matrix1D<double> eigP;
+    tmp.EigenDiagonalize(eigD, eigP);
+    Matrix1D<double> eigPInv = eigP.Inverse();
+    Matrix1D<double> tmp2 = eigP*eigD*eigPInv;
+    EXPECT_EQ(tmp2(0,0), tmp(0,0));
+    EXPECT_EQ(tmp2(0,1), tmp(0,1));
+    EXPECT_EQ(tmp2(1,0), tmp(1,0));
+    EXPECT_EQ(tmp2(1,1), tmp(1,1));
+}
+
 TEST(PolygonsTest, Polyline) {
     Polyline2D<double> poly;
     poly.AddPoint(Vector2D<double>(2.0,3.0));

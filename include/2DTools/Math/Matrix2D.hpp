@@ -163,6 +163,15 @@ public:
     }
 
     /**
+    * Get the Trace of the Matrix
+    * @return T - the value of the Trace
+    **/
+    T Trace()const
+    {
+        return (data[0][0]+data[1][1]+data[2][2]);
+    }
+
+    /**
     * Get Inverse of the Matrix
     * @return Matrix2D - the inversed matrix
     **/
@@ -203,7 +212,7 @@ public:
     const Matrix2D& operator/=(const T& other)
     {
         // Divide only if other is not zero
-        if(other > std::numeric_limits<T>::epsilon())
+        if(std::abs(other) > std::numeric_limits<T>::epsilon())
         {
             for(int i=0;i<3;i++)
             {
